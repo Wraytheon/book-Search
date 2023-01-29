@@ -1,45 +1,3 @@
-/* Carousel */
-const carousel = document.getElementById("carousel");
-const currentImage = document.getElementById("current-image");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-
-// List of image URLs
-const images = [
-  "https://via.placeholder.com/150/008000",
-  "https://via.placeholder.com/150/0000FF",
-  "https://via.placeholder.com/150/FF0000",
-  // Add more image URLs here
-];
-
-let currentIndex = 0;
-
-// Update the current image
-function updateCurrentImage() {
-  currentImage.src = images[currentIndex];
-}
-
-// Show the previous image
-prevBtn.addEventListener("click", function() {
-  currentIndex--;
-  if (currentIndex < 0) {
-    currentIndex = images.length - 1;
-  }
-  updateCurrentImage();
-});
-
-// Show the next image
-nextBtn.addEventListener("click", function() {
-  currentIndex++;
-  if (currentIndex >= images.length) {
-    currentIndex = 0;
-  }
-  updateCurrentImage();
-});
-
-// Initialize the carousel
-updateCurrentImage();
-
 document.querySelector('button').addEventListener('click', getFetch)
 /* Loads local storage on page load and place it in DOM*/
 document.querySelector('p').innerText = localStorage.getItem('books');
@@ -58,6 +16,8 @@ function getFetch(){
         } else {
             /*When button is clicked, everything that is already stored in the local storage under keyname 'books' as string concatenated with the title just inputted: Example: Bible ; Atomic Habits*/
             let books = localStorage.getItem('books') + " ; " + data.title
+            /*Display carousel */
+            document.getElementById('carousel').style.display = 'initial';
 
             /*Create local storage holder that stores entire concatenated string of inputted books*/
             localStorage.setItem('books', books)
@@ -73,6 +33,47 @@ function getFetch(){
         /*Show the cover*/
         document.querySelector('img').src = coverUrl;
 
+        /* Carousel */
+        const carousel = document.getElementById("carousel");
+        const currentImage = document.getElementById("current-image");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+
+        // List of image URLs
+        const images = [
+        "https://via.placeholder.com/150/008000",
+        "https://via.placeholder.com/150/0000FF",
+        "https://via.placeholder.com/150/FF0000",
+        // Add more image URLs here
+        ];
+
+        let currentIndex = 0;
+
+        // Update the current image
+        function updateCurrentImage() {
+        currentImage.src = images[currentIndex];
+        }
+
+        // Show the previous image
+        prevBtn.addEventListener("click", function() {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        }
+        updateCurrentImage();
+        });
+
+        // Show the next image
+        nextBtn.addEventListener("click", function() {
+        currentIndex++;
+        if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+        updateCurrentImage();
+        });
+
+        // Initialize the carousel
+        updateCurrentImage();
       })
       .catch(err => {
           console.log(`error ${err}`)

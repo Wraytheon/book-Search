@@ -25,6 +25,7 @@ img{
 #carousel {
   width: 100%;
   position: relative;
+  display: none;
 }
 
 #current-image {
