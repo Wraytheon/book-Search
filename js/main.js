@@ -1,6 +1,8 @@
 document.querySelector('button').addEventListener('click', getFetch)
 /* Loads local storage on page load and place it in DOM*/
-document.querySelector('p').innerText = localStorage.getItem('books');
+document.querySelector('p').innerText = localStorage.getItem('bookTitle');
+/*Loads locally stored cover images on page load and place them in DOM*/
+document.querySelector('img').src = localStorage.getItem('coverImage');
 
 function getFetch(){
   const choice = document.querySelector('input').value
@@ -10,20 +12,31 @@ function getFetch(){
       .then(res => res.json()) // parse response as JSON
       .then(data => {
         console.log(data.title)
-        /*If no books have inputted yet, the first local storage value will be 'null' so this replaces 'null' with the first input*/
-        if(!localStorage.getItem('books')) {
-            localStorage.setItem('books', data.title)
+        /*If no bookTitle have inputted yet, the first local storage value will be 'null' so this replaces 'null' with the first input*/
+        if(!localStorage.getItem('bookTitle')) {
+            /*Store book titles*/
+            localStorage.setItem('bookTitle', data.title)
+
+            /*Store cover images*/
+            const imageUrlString = JSON.stringify(images)
+
+            localStorage.setItem('coverImage', imageUrlString)
+
+
         } else {
-            /*When button is clicked, everything that is already stored in the local storage under keyname 'books' as string concatenated with the title just inputted: Example: Bible ; Atomic Habits*/
-            let books = localStorage.getItem('books') + " ; " + data.title
+            /*When button is clicked, everything that is already stored in the local storage under keyname 'bookTitle' as string concatenated with the title just inputted: Example: Bible ; Atomic Habits*/
+            let title = localStorage.getItem('bookTitle') + " ; " + data.title
+
+            /*Create local storage holder that stores entire concatenated string of inputted bookTitle*/
+            localStorage.setItem('bookTitle', title)
+
+            // let covers = localStorage.getItem('
+
             /*Display carousel */
             document.getElementById('carousel').style.display = 'initial';
-
-            /*Create local storage holder that stores entire concatenated string of inputted books*/
-            localStorage.setItem('books', books)
         }
         // /*Retrieve titles from localStorage and place in DOM*/
-        document.querySelector('p').innerText = localStorage.getItem('books');
+        document.querySelector('p').innerText = localStorage.getItem('bookTitle');
 
         /*Display book cover*/
         console.log(data.covers)
@@ -42,7 +55,9 @@ function getFetch(){
         // List of image URLs
         const images = [];
 
-        const addImages = data.map(image => image.coverUrl);
+        data.forEach(image => {
+            images.push(image.covers);
+          });
 
         /* Starting index for image urls array*/
         let currentIndex = 0;
