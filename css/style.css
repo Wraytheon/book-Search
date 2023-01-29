@@ -21,3 +21,27 @@ img{
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+#carousel {
+  width: 100%;
+  position: relative;
+}
+
+#current-image {
+  width: 50%;
+}
+
+#prev-btn, #next-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 2em;
+  padding: 1em;
+}
+
+#prev-btn {
+  left: 0;
+}
+
+#next-btn {
+  right: 0;
+}
