@@ -1,6 +1,9 @@
 document.querySelector("button").addEventListener("click", getFetch);
 /* Loads local storage on page load and place it in DOM*/
 document.querySelector("p").innerText = localStorage.getItem("books");
+/*Hide image on page load*/
+document.querySelector("img").style.display = 'none';
+
 
 function getFetch() {
   const choice = document.querySelector("input").value;
@@ -25,6 +28,9 @@ function getFetch() {
 
         /*Create local storage holder that stores entire concatenated string of inputted books*/
         localStorage.setItem("books", titles);
+
+        /* Show cover image */
+        document.querySelector('img').style.display = 'initial';
       }
       // /*Retrieve titles from localStorage and place in DOM*/
       document.querySelector("p").innerText = localStorage.getItem("books");
@@ -33,3 +39,8 @@ function getFetch() {
       console.log(`error ${err}`);
     });
 }
+
+/*9780399501487
+9781841953922
+9780142437339
+*/
