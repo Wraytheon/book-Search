@@ -22,6 +22,15 @@ function getFetch(){
         }
         // /*Retrieve titles from localStorage and place in DOM*/
         document.querySelector('p').innerText = localStorage.getItem('books');
+
+        /*Display book cover*/
+        console.log(data.covers)
+        /*Plug the id retrieved from data.covers into the cover images template url*/
+        const coverUrl = `https://covers.openlibrary.org/b/id/${data.covers}-S.jpg`
+        console.log(coverUrl);
+        /*Show the cover*/
+        document.querySelector('img').src = coverUrl;
+
       })
       .catch(err => {
           console.log(`error ${err}`)
