@@ -40,13 +40,11 @@ function getFetch(){
         const nextBtn = document.getElementById("next-btn");
 
         // List of image URLs
-        const images = [
-        "https://via.placeholder.com/150/008000",
-        "https://via.placeholder.com/150/0000FF",
-        "https://via.placeholder.com/150/FF0000",
-        // Add more image URLs here
-        ];
+        const images = [];
 
+        const addImages = data.map(image => image.coverUrl);
+
+        /* Starting index for image urls array*/
         let currentIndex = 0;
 
         // Update the current image
