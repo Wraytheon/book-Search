@@ -17,6 +17,7 @@ body {
   width: 100vw;
   max-width: 100%;
   text-align: center;
+  overflow: hidden;
 }
 
 
@@ -86,7 +87,7 @@ button:hover {
 
 .book-cover {
   width: 100%;
-  height: 60%;
+  height: 75%;
 }
 
 .book-title {
