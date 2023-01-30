@@ -5,18 +5,37 @@
 /* Box Model Hack */
 *{
   box-sizing: border-box;
+  margin: 0;
 }
 
-/******************************************
-/* LAYOUT
-/*******************************************/
-/* body {
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  width: 100vw;
+  max-width: 100%;
   text-align: center;
 }
-img{
-  display: block;
-  margin: 0 auto;
-} */
+
+
+.bg-container {
+  position: relative;
+}
+.bg-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; 
+  height: 100vh;
+  background-image: url(/img/booksBg.jpg);
+  filter:brightness(50%);
+}
+.bg {
+  /* This will make it stack on top of the ::before */
+  position: relative;
+}
 
 
 
@@ -24,12 +43,33 @@ img{
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+h1 {
+  color: white;
+}
 
+input {
+  padding: .8rem;
+}
+button {
+  padding: .8rem 1rem;
+  background-color:burlywood;
+  border-radius: .5rem;
+  border-color: white;
+  color: white;
+}
+
+button:hover {
+  background-color: brown;
+  cursor: pointer;
+}
+
+/*Books container */
 #book-grid {
   display: flex;
   flex-wrap: wrap;
 }
 
+/*Individual book containers */
 .book {
   display: flex;
   flex-direction: column;
@@ -41,6 +81,7 @@ img{
   border-radius: 10px;
   box-shadow: 0 0 10px #ddd;
   overflow: hidden;
+  background-color: white;
 }
 
 .book-cover {
